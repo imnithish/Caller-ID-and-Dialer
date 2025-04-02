@@ -11,6 +11,4 @@ fun HomeScreen(
     LaunchedEffect(Unit) {
         onSetupIncomingCallHandler()
     }
-
-    "s"
 }
