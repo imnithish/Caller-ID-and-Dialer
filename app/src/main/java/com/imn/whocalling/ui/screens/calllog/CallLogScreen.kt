@@ -1,5 +1,7 @@
 package com.imn.whocalling.ui.screens.calllog
 
+import android.Manifest
+import android.content.pm.PackageManager
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -20,9 +22,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.imn.whocalling.ui.components.CallLogItem
-import com.imn.whocalling.util.dialNumber
+import com.imn.whocalling.util.logd
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -31,8 +34,8 @@ fun CallLogScreen(viewModel: CallLogViewModel = hiltViewModel()) {
     val context = LocalContext.current
     val scrollBehavior =
         TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
-
     val callLogs = viewModel.callLogs
+
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
@@ -60,7 +63,13 @@ fun CallLogScreen(viewModel: CallLogViewModel = hiltViewModel()) {
         ) {
             items(callLogs) { log ->
                 CallLogItem(modifier = Modifier.clickable {
-                    context dialNumber log.number
+//                    context dialNumber log.number
+
+                    if (ContextCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                       "no perm".logd()
+                    }else
+
+                        "i have perm".logd()
                 }, log = log)
             }
         }

@@ -10,12 +10,12 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.net.toUri
 import com.imn.whocalling.data.MockyResponse
 import com.imn.whocalling.network.ApiService
 import retrofit2.Response
 import java.util.Date
 import java.util.Locale
-import androidx.core.net.toUri
 
 fun String.logd(tag: String = "WHO_CALLING_LOG") {
     Log.d(tag, this)
