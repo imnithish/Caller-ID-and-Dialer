@@ -10,7 +10,9 @@ import com.imn.whocalling.ui.theme.WhoCallingTheme
 import com.imn.whocalling.util.permission.calleridandspamroleapp.CallerIdAndSpamAppRoleRequester
 import com.imn.whocalling.util.permission.systemalertwindow.SystemAlertWindowPermissionRequester
 import com.imn.whocalling.util.permission.telephonyandcontacts.TelephonyAndContactsPermissionRequester
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private lateinit var telephonyAndContactsPermissionRequester: TelephonyAndContactsPermissionRequester

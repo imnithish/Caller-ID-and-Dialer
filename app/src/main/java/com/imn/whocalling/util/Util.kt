@@ -9,6 +9,9 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.core.app.ActivityCompat
+import com.imn.whocalling.data.MockyResponse
+import com.imn.whocalling.network.ApiService
+import retrofit2.Response
 
 fun String.logd(tag: String = "WHO_CALLING_LOG") {
     Log.d(tag, this)
@@ -45,10 +48,16 @@ fun Context.openAppPermissionSettings() {
     this.startActivity(intent)
 }
 
-infix fun Context.toast(message: String){
+infix fun Context.toast(message: String) {
     Toast.makeText(
         this,
         message,
         Toast.LENGTH_SHORT
     ).show()
+}
+
+suspend fun ApiService.fetchMockyAPI(): ResultWrapper<Response<MockyResponse>> {
+   return safeApiCall {
+        getMockyData()
+    }
 }
