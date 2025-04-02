@@ -93,7 +93,6 @@ fun PermissionScreen(
     }
 
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-
         Box(
             modifier = Modifier
                 .fillMaxSize()

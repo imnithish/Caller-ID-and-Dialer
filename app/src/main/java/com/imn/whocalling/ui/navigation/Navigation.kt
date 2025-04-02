@@ -21,7 +21,6 @@ fun Navigation(
     systemAlertWindowPermissionRequester: SystemAlertWindowPermissionRequester,
     telephonyAndContactsPermissionRequester: TelephonyAndContactsPermissionRequester,
     callerIdAndSpamAppRoleRequester: CallerIdAndSpamAppRoleRequester,
-    onSetupIncomingCallHandler: () -> Unit
 ) {
     val navController: NavHostController = rememberNavController()
     NavHost(
@@ -50,9 +49,7 @@ fun Navigation(
         }
 
         composable<NavigationDestination.Home> {
-            HomeScreen(
-                onSetupIncomingCallHandler = onSetupIncomingCallHandler
-            )
+            HomeScreen()
         }
 
     }
