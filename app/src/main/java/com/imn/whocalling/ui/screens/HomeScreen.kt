@@ -21,10 +21,12 @@ import com.imn.whocalling.R
 import com.imn.whocalling.data.BottomNavItem
 import com.imn.whocalling.ui.components.BottomNavBar
 import com.imn.whocalling.ui.navigation.HomeRoutes
+import com.imn.whocalling.ui.navigation.NavigationDestination
 import com.imn.whocalling.ui.navigation.NavigationDestination.CallLog
 import com.imn.whocalling.ui.navigation.NavigationDestination.Dialer
 import com.imn.whocalling.ui.screens.calllog.CallLogScreen
 import com.imn.whocalling.ui.screens.dialer.DialerScreen
+import com.imn.whocalling.ui.screens.search.SearchScreen
 
 @Composable
 fun HomeScreen(
@@ -52,6 +54,10 @@ fun HomeScreen(
                     DialerScreen()
                 }
 
+                composable<NavigationDestination.Search> {
+                    SearchScreen()
+                }
+
             }
 
             BottomNavBar(
@@ -65,6 +71,10 @@ fun HomeScreen(
                         BottomNavItem(
                             icon = R.drawable.baseline_dialpad_24,
                             name = "Dialer"
+                        ),
+                        BottomNavItem(
+                            icon = R.drawable.search_24dp_1f1f1f,
+                            name = "Search"
                         )
                     )
                 },

@@ -19,6 +19,7 @@ import com.imn.whocalling.network.ApiService
 import com.imn.whocalling.util.ResultWrapper
 import com.imn.whocalling.util.fetchMockyAPI
 import com.imn.whocalling.util.logd
+import com.imn.whocalling.util.startUp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -139,6 +140,11 @@ class IncomingCallNotification {
 
                     cancelButton = windowLayout.findViewById<Button>(R.id.cancel)
                     cancelButton.setOnClickListener {
+                        closeWindow()
+                    }
+
+                    windowLayout.setOnClickListener {
+                        context.startUp()
                         closeWindow()
                     }
 

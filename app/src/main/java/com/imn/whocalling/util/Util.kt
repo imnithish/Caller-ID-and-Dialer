@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.icu.text.SimpleDateFormat
 import android.net.Uri
+import android.provider.ContactsContract
 import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
@@ -16,6 +17,7 @@ import com.imn.whocalling.network.ApiService
 import retrofit2.Response
 import java.util.Date
 import java.util.Locale
+import android.database.Cursor
 
 fun String.logd(tag: String = "WHO_CALLING_LOG") {
     Log.d(tag, this)
@@ -96,3 +98,41 @@ infix fun Context.dialNumber(phoneNumber: String) {
     }
     this.startActivity(intent)
 }
+
+fun Context.startUp() {
+    val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
+    if (launchIntent != null) {
+        launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(launchIntent)
+    } else {
+        Toast.makeText(this, "App not found!", Toast.LENGTH_SHORT).show()
+    }
+}
+
+fun getAllContacts(context: Context): List<Pair<String, String>> {
+    val contactsList = mutableListOf<Pair<String, String>>()
+    val contentResolver = context.contentResolver
+
+    val cursor: Cursor? = contentResolver.query(
+        ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+        arrayOf(
+            ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+            ContactsContract.CommonDataKinds.Phone.NUMBER
+        ),
+        null, null, null
+    )
+
+    cursor?.use {
+        val nameIndex = it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)
+        val numberIndex = it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
+
+        while (it.moveToNext()) {
+            val name = it.getString(nameIndex)
+            val number = it.getString(numberIndex)
+            contactsList.add(name to number)
+        }
+    }
+
+    return contactsList
+}
+

@@ -7,7 +7,6 @@ import android.database.Cursor
 import android.net.Uri
 import android.provider.CallLog
 import android.provider.ContactsContract
-import android.view.View
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -41,6 +40,7 @@ class CallLogViewModel @Inject constructor(
 
     init {
         fetchCallLogs()
+        // TODO: implement other methods like broadcast receiver. sometimes, the call log doesn't update immediately due to system caching.
         contentResolver.registerContentObserver(
             CallLog.Calls.CONTENT_URI, true, callLogObserver
         )
