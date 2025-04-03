@@ -24,6 +24,7 @@ import com.imn.whocalling.ui.navigation.HomeRoutes
 import com.imn.whocalling.ui.navigation.NavigationDestination.CallLog
 import com.imn.whocalling.ui.navigation.NavigationDestination.Dialer
 import com.imn.whocalling.ui.screens.calllog.CallLogScreen
+import com.imn.whocalling.ui.screens.dialer.DialerScreen
 
 @Composable
 fun HomeScreen(
