@@ -61,3 +61,7 @@ Sample app demonstrating basic Caller ID/Spam identification and Dialer features
 * Then you'll get something like 
   ```https://run.mocky.io/v3/e450275c-e62c-4771-9c50-b5ff97ba8875``` in that ```e450275c-e62c-4771-9c50-b5ff97ba8875``` is the ```MOCKY_NAME```
 * Update it in https://github.com/imnithish/Caller-ID-and-Dialer/blob/819087d435e136cd1b3bb2445961649001f64b4d/app/src/main/java/com/imn/whocalling/util/Constants.kt
+
+### Build
+
+https://github.com/imnithish/Caller-ID-and-Dialer/blob/44d4fa4bf9c53d34068968ef2130c75cddb4b5d8/app/release/app-release.apk
