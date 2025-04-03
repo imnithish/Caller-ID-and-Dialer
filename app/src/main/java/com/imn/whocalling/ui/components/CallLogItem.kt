@@ -39,7 +39,7 @@ fun CallLogItem(modifier: Modifier, log: CallLogEntry) {
                     Text(
                         text = log.whoCallingName ?: log.savedName ?: "",
                         fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp
+                        fontSize = 18.sp
                     )
                 }
                 Row(
@@ -47,8 +47,8 @@ fun CallLogItem(modifier: Modifier, log: CallLogEntry) {
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(text = log.number, fontWeight = FontWeight.Bold, fontSize = 18.sp)
-                    Text(text = log.type, color = Color.DarkGray)
+                    Text(text = log.number, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                    Text(text = log.type, color = Color.DarkGray, fontSize = 12.sp)
                 }
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(text = log.date, color = Color.DarkGray)
@@ -89,10 +89,10 @@ fun CallLogItem(modifier: Modifier, log: CallLogEntry) {
                         painter = painterResource(R.drawable.warning_svgrepo_com),
                         contentDescription = "Spam",
                         modifier = Modifier
-                            .size(36.dp),
+                            .size(24.dp),
                         tint = Color.DarkGray
                     )
-                    Text(text = "Likely a spam", color = Color.DarkGray)
+                    Text(text = "Likely a spam", color = Color.DarkGray, fontSize = 8.sp)
 
                 }
             }

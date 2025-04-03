@@ -70,13 +70,12 @@ fun DialerScreen(viewModel: DialerViewModel = hiltViewModel()) {
             ) {
                 Text(
                     text = viewModel.phoneNumber,
-                    fontSize = 32.sp,
+                    fontSize = 30.sp,
                     modifier = Modifier.padding(16.dp)
                 )
                 AnimatedVisibility(
                     visible = viewModel.suggestion != null,
                     modifier = Modifier
-                        .padding(top = 16.dp)
                         .clickable {
                             if (ContextCompat.checkSelfPermission(
                                     context,
@@ -97,11 +96,11 @@ fun DialerScreen(viewModel: DialerViewModel = hiltViewModel()) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text(
                             text = viewModel.suggestion?.first ?: "",
-                            fontSize = 24.sp,
+                            fontSize = 22.sp,
                         )
                         Text(
                             text = viewModel.suggestion?.second ?: "",
-                            fontSize = 20.sp,
+                            fontSize = 18.sp,
                         )
                     }
 
@@ -152,7 +151,7 @@ fun DialPad(viewModel: DialerViewModel, onDial: () -> Unit) {
                 Text(text = "Delete")
             }
 
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(8.dp))
 
             OutlinedButton(
                 enabled = viewModel.phoneNumber != "",
@@ -168,7 +167,7 @@ fun DialPad(viewModel: DialerViewModel, onDial: () -> Unit) {
 fun DialButton(number: String, onClick: () -> Unit) {
     Box(
         modifier = Modifier
-            .size(96.dp)
+            .size(88.dp)
             .padding(8.dp)
             .background(Color.Gray, shape = CircleShape)
             .clickable { onClick() },

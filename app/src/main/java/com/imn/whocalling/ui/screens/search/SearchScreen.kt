@@ -80,14 +80,14 @@ fun SearchScreen(viewModel: SearchViewModel = hiltViewModel()) {
     ) {
         LazyColumn(
             modifier = Modifier.padding(it),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
 
             items(viewModel.searchResult) {
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp),
+                        .padding(horizontal = 16.dp),
                     colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
 
                     onClick = {
