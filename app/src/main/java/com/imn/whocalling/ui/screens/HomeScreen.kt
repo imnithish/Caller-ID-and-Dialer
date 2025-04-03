@@ -3,6 +3,7 @@ package com.imn.whocalling.ui.screens
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -34,68 +35,63 @@ fun HomeScreen(
     val navController = rememberNavController()
     var selectedTab by rememberSaveable { mutableIntStateOf(0) }
 
-    Scaffold { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
+    Scaffold(modifier = Modifier.navigationBarsPadding(), bottomBar = {
+        BottomNavBar(
+            modifier = Modifier.fillMaxWidth(),
+            items = remember {
+                listOf(
+                    BottomNavItem(
+                        icon = R.drawable.baseline_access_time_24,
+                        name = "Call log"
+                    ),
+                    BottomNavItem(
+                        icon = R.drawable.baseline_dialpad_24,
+                        name = "Dialer"
+                    ),
+                    BottomNavItem(
+                        icon = R.drawable.search_24dp_1f1f1f,
+                        name = "Search"
+                    )
+                )
+            },
+            selectedIndex = selectedTab
         ) {
-            NavHost(
-                modifier = Modifier.weight(1f),
-                navController = navController,
-                startDestination = CallLog,
-            ) {
+            selectedTab = it
+            navController.run controller@{
+                navigate(
+                    HomeRoutes[it],
+                    navOptions {
+                        popUpTo(this@controller.graph.findStartDestination().id) {
+                            saveState = true
+                        }
+                        launchSingleTop = true
+                        restoreState = true
+                    },
+                )
+            }
+        }
+    }) { innerPadding ->
 
-                composable<CallLog> {
-                    CallLogScreen()
-                }
+        NavHost(
+            modifier = Modifier.padding(innerPadding),
+            navController = navController,
+            startDestination = CallLog,
+        ) {
 
-                composable<Dialer> {
-                    DialerScreen()
-                }
-
-                composable<NavigationDestination.Search> {
-                    SearchScreen()
-                }
-
+            composable<CallLog> {
+                CallLogScreen()
             }
 
-            BottomNavBar(
-                modifier = Modifier.fillMaxWidth(),
-                items = remember {
-                    listOf(
-                        BottomNavItem(
-                            icon = R.drawable.baseline_access_time_24,
-                            name = "Call log"
-                        ),
-                        BottomNavItem(
-                            icon = R.drawable.baseline_dialpad_24,
-                            name = "Dialer"
-                        ),
-                        BottomNavItem(
-                            icon = R.drawable.search_24dp_1f1f1f,
-                            name = "Search"
-                        )
-                    )
-                },
-                selectedIndex = selectedTab
-            ) {
-                selectedTab = it
-                navController.run controller@{
-                    navigate(
-                        HomeRoutes[it],
-                        navOptions {
-                            popUpTo(this@controller.graph.findStartDestination().id) {
-                                saveState = true
-                            }
-                            launchSingleTop = true
-                            restoreState = true
-                        },
-                    )
-                }
+            composable<Dialer> {
+                DialerScreen()
+            }
+
+            composable<NavigationDestination.Search> {
+                SearchScreen()
             }
 
         }
+
     }
 
 }

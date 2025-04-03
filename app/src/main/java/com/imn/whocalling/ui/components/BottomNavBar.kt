@@ -3,6 +3,7 @@ package com.imn.whocalling.ui.components
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.BottomNavigationItem
@@ -28,7 +29,7 @@ fun BottomNavBar(
     onClick: (index: Int) -> Unit
 ) {
     NavigationBar(
-        modifier = modifier,
+        modifier = modifier.height(56.dp),
         containerColor = MaterialTheme.colorScheme.background
     ) {
         items.forEachIndexed { index, item ->
@@ -39,7 +40,7 @@ fun BottomNavBar(
                 },
                 icon = {
                     Icon(
-                        modifier = modifier.size(32.dp),
+                        modifier = modifier.size(24.dp),
                         painter = painterResource(item.icon),
                         contentDescription = item.name,
                         tint = if (index == selectedIndex) Color.Black else Color.Gray
@@ -48,7 +49,7 @@ fun BottomNavBar(
                 label = {
                     Text(
                         text = item.name,
-                        fontSize = 12.sp,
+                        fontSize = 10.sp,
                         color = if (index == selectedIndex) Color.Black else Color.Gray,
                     )
                 }
