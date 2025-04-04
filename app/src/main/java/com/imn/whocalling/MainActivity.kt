@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
             CallerIdAndSpamAppRoleRequester(this)
 
         setContent {
-            WhoCallingTheme {
+            WhoCallingTheme(dynamicColor = false) {
                 Navigation(
                     telephonyAndContactsPermissionRequester = telephonyAndContactsPermissionRequester,
                     systemAlertWindowPermissionRequester = systemAlertWindowPermissionRequester,
