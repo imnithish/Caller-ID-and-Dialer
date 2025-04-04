@@ -64,4 +64,4 @@ Sample app demonstrating basic Caller ID/Spam identification and Dialer features
 
 ### Build
 
-https://github.com/imnithish/Caller-ID-and-Dialer/blob/44d4fa4bf9c53d34068968ef2130c75cddb4b5d8/app/release/app-release.apk
+https://github.com/imnithish/Caller-ID-and-Dialer/blob/master/app/release/app-release.apk
